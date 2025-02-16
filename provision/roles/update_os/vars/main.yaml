@@ -1,0 +1,54 @@
+---
+debian_tools:
+  - wget
+  - git
+  - vim
+  - bash-completion
+  - curl
+  - htop
+  - net-tools
+  - dnsutils
+  - atop
+  - sudo
+  - software-properties-common
+  - telnet
+  - axel
+  - jq
+  - iotop
+  - ca-certificates
+  - gnupg
+  - lsb-release
+  - apt-transport-https
+  - gpg
+  - tmux
+
+redhat_tools:
+  - epel-release 
+  - fail2ban
+  - firewalld
+  - aide
+  - rkhunter
+  - clamav
+  - selinux-policy-targeted
+  - audit
+  - openscap-scanner
+  -  htop
+  - atop
+  - sysstat
+  - iotop
+  - iftop
+  - nmon 
+  - lsof
+  - net-tools
+  - tcpdump
+  - nmap
+  - nc
+  - rsync
+  - logrotate
+  - chrony
+  - tuned
+
+
+hostnames:
+  Debian: "server-debian"
+  RedHat: "server-rocky"

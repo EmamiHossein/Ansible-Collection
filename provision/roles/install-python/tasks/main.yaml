@@ -1,0 +1,20 @@
+---
+- name: ---- Install required dependencies ----
+  raw: "yum install -y gcc gcc-c++ make zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel wget"
+
+- name: ---- Download Python source code ----
+  raw: "wget -O /usr/src/Python-{{ python_version }}.tgz https://www.python.org/ftp/python/{{ python_version }}/Python-{{ python_version }}.tgz"
+
+- name: ---- Extract Python source ----
+  raw: "tar -xzf /usr/src/Python-{{ python_version }}.tgz -C /usr/src/"
+
+- name: ---- Build and install Python ----
+  raw: |
+        cd /usr/src/Python-{{ python_version }}
+        ./configure --enable-optimizations
+        make -j$(nproc)
+        make altinstall
+      
+- name: ---- Verify Python installation ----
+  raw: "/usr/local/bin/python{{ python_version }} --version"
+    

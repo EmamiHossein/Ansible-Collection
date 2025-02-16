@@ -1,0 +1,36 @@
+---
+- name: ---- create project yaml file ----
+  file:
+    state: touch
+    path: "{{ansible_root}}/{{project_name}}.yaml"
+  tags: create_main_yaml
+- name: ---- create project roles directory ----
+  file:
+    state: directory
+    path: "{{ansible_root}}/roles/{{project_name}}"
+  tags: creat_project_roles_dir
+- name: ---- create seven directory ----
+  file:
+    state: directory
+    path: "{{ansible_root}}/roles/{{project_name}}/{{item}}"
+  loop:
+      - tasks
+      - vars
+      - defaults
+      - files
+      - meta
+      - handlers
+      - templates
+  tags: create_seven_dir
+- name: ---- create main files in directories ----
+  file:
+    state: touch
+    path: "{{ansible_root}}/roles/{{project_name}}/{{item}}/main.yaml"
+  loop: 
+     - tasks
+     - vars
+     - meta
+     - handlers
+     - defaults
+  tags: create_yaml_file_in_directories
+...

@@ -1,0 +1,68 @@
+---
+# System Configuration and Maintenance
+    - name: Configure DNS resolver
+      ansible.builtin.template:
+        src: templates/resolv.conf.j2
+        dest: /etc/resolv.conf
+        owner: root
+        group: root
+        mode: 0644
+      tags: shekan
+
+    - name: Update system packages
+      block:
+        - name: Update Debian-based systems
+          ansible.builtin.apt:
+            update_cache: yes
+            upgrade: dist
+            cache_valid_time: 3600
+          when: ansible_os_family == 'Debian'
+          tags: update
+
+        - name: Update RedHat-based systems
+          ansible.builtin.yum:
+            name: '*'
+            state: latest
+            update_cache: yes
+          when: ansible_os_family == 'RedHat'
+          tags: update
+      tags: package_update
+
+    - name: Install essential tools (Debian)
+      ansible.builtin.apt:
+        name: "{{ debian_tools }}"
+        state: present
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+      tags: debian_tools
+    
+    - name: Install essential tools (RedHat)
+      ansible.builtin.dnf:
+        name: "{{ redhat_tools }}"
+        state: present
+      when: ansible_os_family == 'RedHat'
+      tags: redhat_tools
+
+
+    - name: Deploy Lynis security auditor
+      ansible.builtin.unarchive:
+        src: lynis-3.1.3.tar.gz
+        dest: /opt/
+        remote_src: no
+        keep_newer: yes
+      tags: lynis
+
+    - name: Set system hostname
+      ansible.builtin.hostname:
+        name: "{{ hostnames[ansible_os_family] }}"
+      tags: hostname
+    
+    
+# Bootstrap Python3 and test
+    - name: Install Python3 (Debian/Ubuntu)
+      raw: apt-get update && apt-get install -y python3
+      tags: debian_python3
+        
+    - name: Install Python3 (RedHat)
+      raw: dnf install -y python3
+      tags: RedHat_python3

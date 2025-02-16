@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - update_os
+  become: true
+  become_method: sudo
+  gather_facts: true
+...
