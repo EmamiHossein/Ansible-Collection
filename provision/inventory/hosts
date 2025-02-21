@@ -6,7 +6,7 @@
 192.168.100.133 ansible_ssh_user=rocky ansible_become_pass=rocky
 
 [hardening]
-192.168.100.135 ansible_ssh_user=debian ansible_become_pass=debian
+192.168.100.134 ansible_ssh_user=debian ansible_become_pass=debian ansible_port=8090
 
 [rocky]
 192.168.0.102 ansible_user=hossein ansible_become_pass=hossein@firststep-95
