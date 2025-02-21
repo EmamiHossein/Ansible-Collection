@@ -1,0 +1,25 @@
+redhat_tools:
+- fail2ban
+- firewalld
+- aide
+- rkhunter
+- clamav
+- selinux-policy-targeted
+- audit
+- openscap-scanner
+- htop
+- atop
+- sysstat
+- iotop
+- iftop
+- nmon
+- lsof
+- net-tools
+- tcpdump
+- nmap
+- nc
+- rsync
+- logrotate
+- chrony
+
+hostname: "Rocky-Linux-9"
