@@ -1,0 +1,5 @@
+[asiatech]
+193.151.138.99 ansible_ssh_user=hossein ansible_become_pass=qazwsx ansible_port=8191
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
