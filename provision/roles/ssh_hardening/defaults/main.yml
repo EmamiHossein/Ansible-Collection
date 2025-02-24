@@ -31,10 +31,10 @@ ssh_client_password_login: false # ssh
 ssh_server_password_login: false # sshd
 
 # ports on which ssh-server should listen
-ssh_server_ports: [ "8191" ] # sshd
+ssh_server_ports: [ "5022" ] # sshd
 
 # port to which ssh-client should connect
-ssh_client_port: "8191" # ssh
+ssh_client_port: "5022" # ssh
 
 # one or more ip addresses, to which ssh-server should listen to.
 # Default is empty, but should be configured for security reasons!
@@ -113,13 +113,13 @@ ssh_gssapi_delegation: false
 ssh_deny_users: "" # sshd
 
 # if specified, login is allowed only for user names that match one of the patterns.
-ssh_allow_users: "hossein" # sshd
+ssh_allow_users: "debian" # sshd
 
 # if specified, login is disallowed for users whose primary group or supplementary group list matches one of the patterns.
 ssh_deny_groups: "" # sshd
 
 # if specified, login is allowed only for users whose primary group or supplementary group list matches one of the patterns.
-ssh_allow_groups: "hossein" # sshd
+ssh_allow_groups: "debian" # sshd
 
 # change default file that contains the public keys that can be used for user authentication.
 ssh_authorized_keys_file: "" # sshd

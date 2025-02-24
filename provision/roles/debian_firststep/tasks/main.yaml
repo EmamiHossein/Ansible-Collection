@@ -27,6 +27,10 @@
     name: "{{hostname}}"
   tags: hostname
 
+- name: ---- Install Sudo Package in Debian ----
+  raw: apt-get update && apt-get install -y sudo
+  tags: sudo_install
+
 # Bootstrap Python3 and test
 - name: ---- Install Python3 (Debian/Ubuntu) ----
   raw: apt-get update && apt-get install -y python3

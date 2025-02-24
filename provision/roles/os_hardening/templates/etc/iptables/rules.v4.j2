@@ -1,6 +1,6 @@
 *filter
 :INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
+:FORWARD DROP [0:0]
 :OUTPUT ACCEPT [0:0]
 -A INPUT -i lo -j ACCEPT
 {% if iptables.nic_access is defined %}
@@ -25,6 +25,8 @@
 {% endfor %}
 {% endif %}
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+-A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
 -A INPUT -j DROP
 -A OUTPUT -j ACCEPT
 COMMIT

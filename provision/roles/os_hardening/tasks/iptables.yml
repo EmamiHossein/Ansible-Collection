@@ -12,12 +12,12 @@
     group: root
     mode: "0640"
   notify:
-    - Restart iptables
+  - Restart iptables
   tags: iptables
 
-- name: Changing root password
-  user:
-    name: root
-    password: "{{ os_new_root_password }}"
-    update_password: always
-  tags: iptables
+#- name: Changing root password
+#  user:
+#    name: root
+#    password: "{{ os_new_root_password }}"
+#    update_password: always
+#  tags: iptables
