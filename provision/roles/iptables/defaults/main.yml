@@ -1,0 +1,16 @@
+---
+# Chane Root Password
+os_new_root_password: qaz123QAZ!@#
+
+# Iptables configuration
+os_iptables_enabled: true
+iptables:
+  #nic_access:
+  #  - web_net
+  #  - app_net
+  tcp_port:
+  - 80
+  - 443
+  #udp_port:
+  #ip_access:
+  #  - 192.168.200.0/24
