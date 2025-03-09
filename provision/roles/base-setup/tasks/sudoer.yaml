@@ -1,0 +1,8 @@
+- name: ---- Create Sudoers File for User ----
+  copy:
+    dest: "/etc/sudoers.d/{{ item }}"
+    content: "{{ item }} ALL=(ALL) NOPASSWD: ALL"
+    owner: root
+    group: root
+    mode: "0440"
+  loop: "{{ sudoers }}"

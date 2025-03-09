@@ -1,5 +1,0 @@
-[home]
-192.168.100.134 ansible_ssh_user=debian ansible_become_pass=debian ansible_port=5022
-
-[all:vars]
-ansible_python_interpreter=/usr/bin/python3

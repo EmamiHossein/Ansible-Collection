@@ -1,0 +1,15 @@
+- name: ---- Run Lynis Audit ----
+  become: yes
+  shell: lynis audit system --no-colors | tee /tmp/lynis_audit.log
+  register: lynis_audit_output
+  changed_when: false
+
+- name: ---- Extract Lynis Hardening Index ----
+  become: yes
+  shell: awk -F '=' '/hardening_index/ {print $2}' /var/log/lynis-report.dat
+  register: hardening_index
+  changed_when: false
+
+- name: ---- Display Lynis Hardening Score ----
+  debug:
+    msg: "🔒 Lynis Hardening Score: {{ hardening_index.stdout | default('Not Found') }}"

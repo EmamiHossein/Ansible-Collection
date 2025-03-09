@@ -1,0 +1,30 @@
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Restart all services
+  ansible.builtin.systemd:
+    name: my_service
+    state: restarted
+
+- name: Reboot if needed
+  become: yes
+  reboot:
+    msg: "Rebooting after system upgrade"
+    reboot_timeout: 600
+  when: ansible_facts['kernel'] != ansible_facts['kernel_version']
+
+- name: Enable and Start Chrony Service
+  become: yes
+  systemd:
+    name: chrony
+    enabled: yes
+    state: restarted
+    daemon_reload: yes
+    masked: no
+
+- name: Restart sshd
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
+  become: true

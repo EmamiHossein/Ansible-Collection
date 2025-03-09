@@ -1,0 +1,10 @@
+- name: ---- Update Packages and Upgrade Distro ----
+  apt:
+    update_cache: yes
+    upgrade: dist
+    cache_valid_time: 3600
+    autoremove: yes
+    autoclean: yes
+  notify:
+  - Restart all services
+  - Reboot if needed

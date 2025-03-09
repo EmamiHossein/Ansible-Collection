@@ -1,0 +1,28 @@
+# Base System Main Configuration 
+- name: ---- Update Packages and Upgrade Distro ----
+  ansible.builtin.import_tasks: update_packages.yaml
+  tags: update_packages
+
+- name: ---- Install Debian Essential Tools ----
+  ansible.builtin.import_tasks: install_tools.yaml
+  tags: install_tools
+
+- name: ---- Configuration NTP ----
+  ansible.builtin.import_tasks: ntp.yaml
+  tags: ntp
+
+- name: ---- SSH Hardening ----
+  ansible.builtin.import_tasks: ssh_hardening.yaml
+  tags: ssh_hardening
+
+- name: ---- Change Hostname ----
+  ansible.builtin.import_tasks: hostname.yaml
+  tags: hostname
+
+- name: ---- Create Sudoers File for User ----
+  ansible.builtin.import_tasks: sudoer.yaml
+  tags: sudoer_user
+
+- name: ---- Run Lynis and Show Lynis Index ----
+  ansible.builtin.import_tasks: lynis.yaml
+  tags: lynis

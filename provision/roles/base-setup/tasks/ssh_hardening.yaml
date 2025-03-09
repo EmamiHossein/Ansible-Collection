@@ -1,0 +1,54 @@
+- name: ---- Hardening SSH Service ----
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?{{ item.option }}'
+    line: "{{ item.option }} {{ item.value }}"
+  notify: Restart sshd
+  loop:
+  - { option: AllowTcpForwarding, value: "no" }
+  - { option: ClientAliveCountMax, value: "2" }
+  - { option: ClientAliveInterval, value: "0" }
+  - { option: Compression, value: "no" }
+  - { option: FingerprintHash, value: "SHA256" }
+  - { option: GatewayPorts, value: "no" }
+  - { option: IgnoreRhosts, value: "yes" }
+  - { option: LoginGraceTime, value: "30" }
+  - { option: LogLevel, value: "VERBOSE" }
+  - { option: MaxAuthTries, value: "3" }
+  - { option: MaxSessions, value: "2" }
+  - { option: PermitRootLogin, value: "without-password" }
+  - { option: PermitUserEnvironment, value: "no" }
+  - { option: PermitTunnel, value: "no" }
+  - { option: Port, value: "{{ ssh_port | default(22) }}" }
+  - { option: PrintLastLog, value: "yes" }
+  - { option: StrictModes, value: "yes" }
+  - { option: TCPKeepAlive, value: "no" }
+  - { option: UseDNS, value: "no" }
+  - { option: X11Forwarding, value: "no" }
+  - { option: AllowAgentForwarding, value: "no" }
+  - { option: Banner, value: "{{ ssh_banner_path }}" }
+  - { option: AllowUsers, value: "{{ ssh_allow_users }}" }
+  - { option: AllowGroups, value: "{{ ssh_allow_groups }}" }
+
+- name: ---- Copy SSH Banner File in Multiple Destination ----
+  copy:
+    src: issue
+    dest: "{{ item }}"
+    mode: "0600"
+    owner: root
+    group: root
+  with_items:
+  - /etc/issue
+  - /etc/issue.net
+  - "{{ ssh_banner_path }}"
+  notify: Restart sshd
+
+- name: ---- Disable Dynamic MOTD ----
+  community.general.pamd:
+    name: sshd
+    type: session
+    control: optional
+    module_path: pam_motd.so
+    state: absent
+    backup: true

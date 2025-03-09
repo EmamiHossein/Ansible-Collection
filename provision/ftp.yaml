@@ -1,6 +1,0 @@
----
-- hosts: hosts
-  gather_facts: yes
-  become: yes
-  roles: 
-    - ftp

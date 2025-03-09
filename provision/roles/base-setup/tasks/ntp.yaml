@@ -1,0 +1,13 @@
+- name: ---- Ensure Chrony is Installed ----
+  apt:
+    name: chrony
+    state: present
+  notify: Enable and Start Chrony Service
+  tags: ntp
+
+- name: ---- Set time-zone to Asia/Tehran ----
+  become: yes
+  community.general.timezone:
+    name: Asia/Tehran
+  when: ansible_facts['date_time']['tz'] != "IRDT"
+  tags: timezone

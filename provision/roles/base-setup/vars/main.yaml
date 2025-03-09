@@ -1,0 +1,55 @@
+# System Hostname
+hostname: debian-server
+
+# Sudoer Users
+sudoers:
+- debian
+
+# Essential Tools
+tools:
+- wget
+- sudo
+- git
+- vim
+- bash-completion
+- curl
+- htop
+- net-tools
+- dnsutils
+- atop
+- software-properties-common
+- telnet
+- axel
+- jq
+- iotop
+- ca-certificates
+- gnupg
+- gpg
+- lsb-release
+- apt-transport-https
+- tmux
+- lynis
+- chrony
+- fail2ban
+- acl
+- auditd
+- smartmontools
+- e2fsprogs
+- logrotate
+- rsyslog
+- sysstat
+- ncdu
+- mtr
+- iproute2
+- netcat-openbsd
+- lsof
+- tree
+- dmidecode
+- pciutils
+- usbutils
+
+# SSH Config Vars
+ssh_banner_path: /etc/issue
+ssh_port: 10888
+ssh_allow_users: debian
+ssh_allow_groups: debian

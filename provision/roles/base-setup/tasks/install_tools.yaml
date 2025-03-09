@@ -1,0 +1,6 @@
+- name: ---- Install Debian Essential Tools ----
+  apt:
+    name: "{{tools}}"
+    state: present
+    #retries: 3
+    #delay: 10

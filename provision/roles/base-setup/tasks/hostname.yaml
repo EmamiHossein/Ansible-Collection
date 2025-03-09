@@ -1,0 +1,4 @@
+- name: ---- Set System Hostname ----
+  hostname:
+    name: "{{hostname}}"
+  tags: hostname
