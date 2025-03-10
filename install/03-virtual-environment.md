@@ -1,4 +1,4 @@
-# Installing a Specific Version of Ansible in a Virtual Environment
+# Installin Ansible in a Virtual Environment
 
 ## Introduction
 Installing **Ansible** inside a **virtual environment (virtualenv)** ensures that dependencies remain isolated and do not interfere with system packages. This guide provides step-by-step instructions on how to:
@@ -47,18 +47,6 @@ Now, activate the virtual environment:
   
   ```bash
   source venv/bin/activate
-  ```
-
-- **On Windows (CMD):**
-
-  ```cmd
-  venv\Scripts\activate
-  ```
-
-- **On Windows (PowerShell):**
-
-  ```powershell
-  venv\Scripts\Activate.ps1
   ```
 
 Once activated, your terminal prompt should change to indicate that you are inside the virtual environment.
@@ -116,10 +104,6 @@ Since Ansible is installed inside the virtual environment, you must **activate t
 ```bash
 source venv/bin/activate  # Linux/macOS
 ```
-or
-```cmd
-venv\Scripts\activate  # Windows
-```
 
 Then, you can run Ansible commands normally:
 
@@ -150,7 +134,6 @@ deactivate
 
   ```bash
   rm -rf venv  # Linux/macOS
-  rmdir /s /q venv  # Windows
   ```
 
 - To list all available versions of Ansible, use:
@@ -168,4 +151,4 @@ By installing **Ansible** inside a `virtualenv`, you ensure that your environmen
 
 ---
 
-### **Author:** [Your Name]
+### **Author:** Hossein Emami
